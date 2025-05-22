@@ -25,7 +25,7 @@ Whether you're an individual looking to manage personal finances or a developer 
 
 ## Architecture Diagram
 
-![Architecture Diagram](./docs/architecture-diagram.png)
+![Architecture Diagram](https://raw.githubusercontent.com/nmelgar/budget-tracker-api/refs/heads/main/architecture-diagram.png)
 
 ---
 
