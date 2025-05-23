@@ -1,6 +1,8 @@
 {
   "devDependencies": {
+    "@types/express": "^5.0.2",
     "@types/node": "^22.15.21",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
@@ -8,5 +10,15 @@
     "express": "^5.1.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.15.0"
-  }
+  },
+  "name": "budget-tracker-api",
+  "version": "1.0.0",
+  "description": "A comprehensive **API for tracking personal budgets**, managing expenses, and organizing financial data efficiently. Built with **Node.js, TypeScript, GraphQL**, and **MongoDB**, this backend project supports secure authentication, data validation, and extensibility for future features.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
