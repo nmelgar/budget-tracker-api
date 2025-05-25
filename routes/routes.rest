@@ -1,99 +1,29 @@
 # LOCAL ENV TESTS
 ###
-GET http://localhost:3000/
-
-###
 GET http://localhost:3000/transactions
 
 ###
-GET http://localhost:3000/contacts/6814f5a340cdf656cd55d0e1
-
-###
-POST http://localhost:3000/contacts
+POST http://localhost:3000/transactions
 Content-Type: application/json
 
 {
-    "firstName": "Thierry",
-    "lastName": "Henry",
-    "email": "henry27@gmail.com",
-    "favoriteColor": "Yellow",
-    "birthday": "1980-09-23"
+  "amount": 25,
+  "type": "food",
+  "transactionDate": "1980-09-12",
+  "description": "This was a transaction to buy chips"
 }
-
-###
-POST http://localhost:3000/contacts
-Content-Type: application/json
-
-{
-    "firstName": "Rafa",
-    "lastName": "Marquez",
-    "email": "rafamarquez@gmail.com",
-    "favoriteColor": "red",
-    "birthday": "1980-09-12"
-}
-
-###
-PUT http://localhost:3000/contacts/6814f5a340cdf656cd55d0e1
-Content-Type: application/json
-
-{
-    "firstName": "Cristiano Updated",
-    "lastName": "Ronaldo",
-    "email": "cristianoronaldo@gmail.com",
-    "favoriteColor": "blue",
-    "birthday": "1988-05-19"
-
-}
-
-###
-DELETE http://localhost:3000/contacts/681ff87431eb0ec8ac2bdea6
 
 # PROD ENV TESTS
 ###
-GET https://nefi341-test-name.onrender.com/
+GET https://budget-tracker-api-3hgw.onrender.com/transactions
 
 ###
-GET https://nefi341-test-name.onrender.com/contacts/
-
-###
-GET https://nefi341-test-name.onrender.com/contacts/6814f5a340cdf656cd55d0e1
-
-###
-POST https://nefi341-test-name.onrender.com/contacts
+POST https://budget-tracker-api-3hgw.onrender.com/transactions
 Content-Type: application/json
 
 {
-    "firstName": "Thierry",
-    "lastName": "Henry",
-    "email": "henry27@gmail.com",
-    "favoriteColor": "Yellow",
-    "birthday": "1980-09-23"
+  "amount": 28,
+  "type": "food",
+  "transactionDate": "1980-09-12",
+  "description": "This was a transaction to buy chips"
 }
-
-###
-POST https://nefi341-test-name.onrender.com/contacts
-Content-Type: application/json
-
-{
-    "firstName": "Rafa",
-    "lastName": "Marquez",
-    "email": "rafamarquez@gmail.com",
-    "favoriteColor": "red",
-    "birthday": "1980-09-12"
-}
-
-###
-PUT https://nefi341-test-name.onrender.com/contacts/6814f5a340cdf656cd55d0e1
-Content-Type: application/json
-
-{
-    "firstName": "Cristiano Updated",
-    "lastName": "Ronaldo",
-    "email": "cristianoronaldo@gmail.com",
-    "favoriteColor": "blue",
-    "birthday": "1988-05-19"
-
-}
-
-###
-DELETE https://nefi341-test-name.onrender.com/contacts/681ffb37464bbf1b0615e802

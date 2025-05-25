@@ -30,7 +30,7 @@ const options: swaggerJsdoc.Options = {
         url: `http://localhost:${PORT}`,
       },
       {
-        url: "https://nefi341-test-name.onrender.com",
+        url: "https://budget-tracker-api-3hgw.onrender.com",
       },
     ],
   },
