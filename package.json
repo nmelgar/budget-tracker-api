@@ -6,16 +6,22 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongodb": "^6.16.0",
-    "mongoose": "^8.15.0"
+    "mongoose": "^8.15.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "name": "budget-tracker-api",
   "version": "1.0.0",
   "description": "A comprehensive **API for tracking personal budgets**, managing expenses, and organizing financial data efficiently. Built with **Node.js, TypeScript, GraphQL**, and **MongoDB**, this backend project supports secure authentication, data validation, and extensibility for future features.",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
