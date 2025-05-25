@@ -29,6 +29,9 @@ const options: swaggerJsdoc.Options = {
       {
         url: `http://localhost:${PORT}`,
       },
+      {
+        url: "https://nefi341-test-name.onrender.com",
+      },
     ],
   },
   apis: ["./routes/routes.ts"],
