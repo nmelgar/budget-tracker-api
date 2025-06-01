@@ -45,3 +45,18 @@ export const updateTransaction = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Failed to update transaction" });
   }
 };
+
+// DELETE a transaction
+export const deleteTransaction = async (req: Request, res: Response) => {
+  try {
+    const transactionId = req.params.id;
+    const transaction = await Transaction.findByIdAndDelete(transactionId);
+    if (transaction) {
+      res.status(200).json({ message: "Transaction deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Transaction not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete transaction" });
+  }
+};

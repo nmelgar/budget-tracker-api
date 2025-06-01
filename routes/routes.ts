@@ -3,6 +3,7 @@ import {
   getTransactions,
   postTransaction,
   updateTransaction,
+  deleteTransaction,
 } from "../controllers/transactionsController";
 
 const router = express.Router();
@@ -15,6 +16,9 @@ router.post("/transactions", postTransaction);
 
 // PUT to modify a transaction
 router.put("/transactions/:id", updateTransaction);
+
+// DELETE a transaction
+router.delete("/transactions/:id", deleteTransaction);
 
 /**
  * @swagger
@@ -121,4 +125,25 @@ router.put("/transactions/:id", updateTransaction);
  *       500:
  *         description: Failed to update transaction
  */
+/**
+ * @swagger
+ * /transactions/{id}:
+ *   delete:
+ *     summary: Delete a transaction
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The transaction ID
+ *     responses:
+ *       200:
+ *         description: Transaction deleted successfully
+ *       404:
+ *         description: Transaction not found
+ *       500:
+ *         description: Failed to delete transaction
+ */
+
 export default router;
