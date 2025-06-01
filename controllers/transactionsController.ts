@@ -26,3 +26,22 @@ export const postTransaction = async (req: Request, res: Response) => {
     res.status(400).json({ message: "Error adding the new transaction" });
   }
 };
+
+// PUT to modify a transaction
+export const updateTransaction = async (req: Request, res: Response) => {
+  try {
+    const transactionId = req.params.id;
+    const transaction = await Transaction.findByIdAndUpdate(
+      transactionId,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (transaction) {
+      res.status(200).json(transaction);
+    } else {
+      res.status(404).json({ message: "Transaction not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update transaction" });
+  }
+};

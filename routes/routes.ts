@@ -2,6 +2,7 @@ import express from "express";
 import {
   getTransactions,
   postTransaction,
+  updateTransaction,
 } from "../controllers/transactionsController";
 
 const router = express.Router();
@@ -11,6 +12,9 @@ router.get("/transactions", getTransactions);
 
 // POST new transaction
 router.post("/transactions", postTransaction);
+
+// PUT to modify a transaction
+router.put("/transactions/:id", updateTransaction);
 
 /**
  * @swagger
@@ -69,4 +73,52 @@ router.post("/transactions", postTransaction);
  *         description: Invalid input
  */
 
+/**
+ * @swagger
+ * /transactions/{id}:
+ *   put:
+ *     summary: Update a transaction
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The transaction ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - amount
+ *               - type
+ *               - transactionDate
+ *               - description
+ *             properties:
+ *               amount:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *               transactionDate:
+ *                 type: string
+ *                 format: date
+ *               description:
+ *                 type: string
+ *           example:
+ *             amount: 25
+ *             type: food
+ *             transactionDate: 1980-09-12
+ *             description: This was a transaction to buy chips
+ *     responses:
+ *       200:
+ *         description: Transaction updated successfully
+ *       400:
+ *         description: Invalid input
+ *       404:
+ *         description: Transaction not found
+ *       500:
+ *         description: Failed to update transaction
+ */
 export default router;
