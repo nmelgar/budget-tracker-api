@@ -1,6 +1,11 @@
 import express, { Router, Request, Response } from "express";
 import { Transaction } from "../models/budget";
 
+// home route
+export const getHome = (req: Request, res: Response) => {
+  res.render("home", { title: "Budget Tracker API" });
+};
+
 // get all transactions
 export const getTransactions = async (req: Request, res: Response) => {
   try {

@@ -4,9 +4,13 @@ import {
   postTransaction,
   updateTransaction,
   deleteTransaction,
+  getHome,
 } from "../controllers/transactionsController";
 
 const router = express.Router();
+
+// Home route
+router.get("/", getHome);
 
 // GET all transactions
 router.get("/transactions", getTransactions);
