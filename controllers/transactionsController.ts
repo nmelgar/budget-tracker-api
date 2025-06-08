@@ -16,6 +16,16 @@ export const getTransactions = async (req: Request, res: Response) => {
   }
 };
 
+// get transaction by ID
+export const getTransactionById = async (req: Request, res: Response) => {
+  try {
+    const transaction = await Transaction.findById(req.params.id);
+    res.json(transaction);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch transaction" });
+  }
+};
+
 // post a new transaction
 export const postTransaction = async (req: Request, res: Response) => {
   const transaction = new Transaction({

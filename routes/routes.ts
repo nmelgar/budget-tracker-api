@@ -1,10 +1,11 @@
 import express from "express";
 import {
+  getHome,
   getTransactions,
+  getTransactionById,
   postTransaction,
   updateTransaction,
   deleteTransaction,
-  getHome,
 } from "../controllers/transactionsController";
 
 const router = express.Router();
@@ -14,6 +15,9 @@ router.get("/", getHome);
 
 // GET all transactions
 router.get("/transactions", getTransactions);
+
+// get transaction by ID
+router.get("/transactions/:id", getTransactionById);
 
 // POST new transaction
 router.post("/transactions", postTransaction);
@@ -41,6 +45,30 @@ router.delete("/transactions/:id", deleteTransaction);
  *       500:
  *         description: No transactions were found
  *
+ * /transactions/{id}:
+ *   get:
+ *     summary: Get transaction by ID
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: string
+ *        description: The ID of the transaction
+ *     responses:
+ *       200:
+ *         description: transaction found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *       404:
+ *         description: transaction not found
  */
 
 /**
