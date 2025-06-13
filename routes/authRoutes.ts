@@ -1,5 +1,10 @@
 import express from "express";
-import { login, googleAuth, logout } from "../controllers/loginController";
+import {
+  login,
+  googleAuth,
+  logout,
+  googleRedirect,
+} from "../controllers/loginController";
 
 const router = express.Router();
 
@@ -11,5 +16,8 @@ router.get("/logout", logout);
 
 // auth with google
 router.get("/google", googleAuth);
+
+// callback route for google to redirect
+router.get("/google/redirect", googleRedirect);
 
 export default router;
