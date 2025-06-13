@@ -2,6 +2,8 @@
   "devDependencies": {
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.21",
+    "@types/passport": "^1.0.17",
+    "@types/passport-google-oauth20": "^2.0.16",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },

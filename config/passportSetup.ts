@@ -1,5 +1,7 @@
-import { passport } from "passport";
-import { GoogleStrategy } from "passport-google-oauth20";
+import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import dotenv from "dotenv";
+dotenv.config();
 
 const clientID = process.env.GOOGLE_CLIENT_ID || "";
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
@@ -14,12 +16,8 @@ passport.use(
     {
       clientID,
       clientSecret,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "/auth/google/redirect",
     },
-    (accessToken, refreshToken, profile, done) => {
-      // Here you would typically find or create a user in your database
-      // For now, we will just return the profile
-      return done(null, profile);
-    }
+    () => {}
   )
 );

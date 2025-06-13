@@ -1,5 +1,6 @@
 import express, { Router, Request, Response } from "express";
 import { Transaction } from "../models/budget";
+import passport from "passport";
 
 // login route
 export const login = (req: Request, res: Response) => {
@@ -13,7 +14,6 @@ export const logout = (req: Request, res: Response) => {
 };
 
 // auth with google
-export const googleAuth = (req: Request, res: Response) => {
-  // handle with passport
-  res.send("Login with Google is not implemented yet.");
-};
+export const googleAuth = passport.authenticate("google", {
+  scope: ["profile"],
+});

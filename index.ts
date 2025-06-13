@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import swaggerDocs from "./utils/swagger";
 import transactionRoutes from "./routes/routes";
 import authRoutes from "./routes/authRoutes";
+import "./config/passportSetup";
 
 dotenv.config();
 
