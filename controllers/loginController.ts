@@ -19,7 +19,8 @@ export const googleAuth = passport.authenticate("google", {
 });
 
 // google redirect
-export const googleRedirect = (req: Request, res: Response) => {
+export const googleRedirect = passport.authenticate("google", {
   // handle with passport
-  res.send("Callback uri");
-};
+  failureRedirect: "/login",
+  successRedirect: "/transactions",
+});
