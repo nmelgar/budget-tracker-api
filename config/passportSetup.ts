@@ -2,6 +2,7 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import dotenv from "dotenv";
 dotenv.config();
+import { User } from "../models/usersOauth";
 
 const clientID = process.env.GOOGLE_CLIENT_ID || "";
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
@@ -18,9 +19,19 @@ passport.use(
       clientSecret,
       callbackURL: "/auth/google/redirect",
     },
-    (accessToken, refreshToken, profile, done) => {
-      console.log("passport callback function fired");
-      console.log(profile);
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        let user = await User.findOne({ googleId: profile.id });
+        if (!user) {
+          user = await User.create({
+            name: profile.displayName,
+            googleId: profile.id,
+          });
+        }
+        return done(null, user);
+      } catch (err) {
+        return done(err, undefined);
+      }
     }
   )
 );
