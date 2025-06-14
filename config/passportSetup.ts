@@ -12,6 +12,17 @@ if (!clientID || !clientSecret) {
     "Google OAuth credentials are not set in environment variables."
   );
 }
+
+passport.serializeUser((user: any, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
 passport.use(
   new GoogleStrategy(
     {
@@ -25,6 +36,7 @@ passport.use(
         if (!user) {
           user = await User.create({
             name: profile.displayName,
+            email: profile.emails && profile.emails[0]?.value,
             googleId: profile.id,
           });
         }
