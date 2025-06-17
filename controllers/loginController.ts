@@ -15,7 +15,7 @@ export const logout = (req: Request, res: Response) => {
 
 // auth with google
 export const googleAuth = passport.authenticate("google", {
-  scope: ["profile"],
+  scope: ["profile", "email"],
 });
 
 // google redirect

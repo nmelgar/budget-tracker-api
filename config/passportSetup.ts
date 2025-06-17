@@ -33,13 +33,30 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       try {
         let user = await User.findOne({ googleId: profile.id });
-        if (!user) {
+        const email = profile.emails && profile.emails[0]?.value;
+
+        // try to find by email if googleId not found and email exists
+        if (!user && email) {
+          user = await User.findOne({ email });
+        }
+
+        // only create user if not found and email exists
+        if (!user && email) {
           user = await User.create({
             name: profile.displayName,
-            email: profile.emails && profile.emails[0]?.value,
+            email: email,
             googleId: profile.id,
           });
         }
+
+        // if user is still not found (no email), do not create user
+        if (!user) {
+          return done(
+            new Error("No email found in Google profile. Cannot create user."),
+            undefined
+          );
+        }
+
         return done(null, user);
       } catch (err) {
         return done(err, undefined);
