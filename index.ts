@@ -7,7 +7,6 @@ import swaggerDocs from "./utils/swagger";
 import transactionRoutes from "./routes/routes";
 import authRoutes from "./routes/authRoutes";
 import "./config/passportSetup";
-import cookieSession from "cookie-session";
 
 dotenv.config();
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
@@ -15,12 +14,17 @@ const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
 const app = express();
 app.use(express.json());
 app.set("view engine", "ejs");
+
+// for the session / cookie
 app.use(
-  cookieSession({
-    maxAge: 24 * 60 * 60 * 1000, // for 24 hours in milliseconds
-    keys: [process.env.COOKIE_KEY || ""],
+  session({
+    secret: clientSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
   })
 );
+
 // initialize passport and session for login
 app.use(passport.initialize());
 app.use(passport.session());

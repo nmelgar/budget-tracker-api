@@ -4,6 +4,8 @@ import {
   googleAuth,
   logout,
   googleRedirect,
+  renderProfile,
+  ensureAuthenticated,
 } from "../controllers/loginController";
 
 const router = express.Router();
@@ -18,6 +20,10 @@ router.get("/logout", logout);
 router.get("/google", googleAuth);
 
 // callback route for google to redirect
-router.get("/google/redirect", googleRedirect);
+router.get("/google/redirect", googleRedirect, (req, res) =>
+  res.redirect("/auth/profile")
+);
+
+router.get("/profile", ensureAuthenticated, renderProfile);
 
 export default router;

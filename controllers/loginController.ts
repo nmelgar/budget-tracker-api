@@ -1,4 +1,4 @@
-import express, { Router, Request, Response } from "express";
+import express, { Router, Request, Response, NextFunction } from "express";
 import { Transaction } from "../models/budget";
 import passport from "passport";
 
@@ -22,5 +22,20 @@ export const googleAuth = passport.authenticate("google", {
 export const googleRedirect = passport.authenticate("google", {
   // handle with passport
   failureRedirect: "/login",
-  successRedirect: "/transactions",
 });
+
+export const renderProfile = (req: Request, res: Response) => {
+  // req.user will be set by Passport
+  res.render("profile", { user: req.user });
+};
+
+export const ensureAuthenticated = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/auth/login");
+};
