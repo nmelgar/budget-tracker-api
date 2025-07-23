@@ -12,6 +12,7 @@ dotenv.config();
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
 
 const app = express();
+app.set("trust proxy", true);
 app.use(express.json());
 app.set("view engine", "ejs");
 
