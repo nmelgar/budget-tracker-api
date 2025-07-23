@@ -7,12 +7,19 @@ import swaggerDocs from "./utils/swagger";
 import transactionRoutes from "./routes/routes";
 import authRoutes from "./routes/authRoutes";
 import "./config/passportSetup";
+import cors from "cors";
 
 dotenv.config();
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
 
 const app = express();
 app.set("trust proxy", true);
+app.use(
+  cors({
+    origin: "https://budget-tracker-api-3lms.onrender.com",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.set("view engine", "ejs");
 
